@@ -5,8 +5,7 @@ import com.clientservice.domain.model.gateway.UserGateway;
 import com.clientservice.infrastructure.drivenadapter.restconsumer.dto.UserResponseDto;
 import com.clientservice.infrastructure.drivenadapter.restconsumer.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -14,8 +13,9 @@ import reactor.core.publisher.Mono;
 
 @Component
 @RequiredArgsConstructor
-public class UserRestConsumer  implements UserGateway {
+public class  UserRestConsumer  implements UserGateway {
     private final WebClient.Builder builder;
+    private final ExternalErrorMapper externalErrorMapper;
 
     @Override
     public Mono<User> findByUsername(String username){
@@ -34,6 +34,7 @@ public class UserRestConsumer  implements UserGateway {
                 .accept(MediaType.APPLICATION_JSON)
                 .bodyValue(UserMapper.toUserRequestDto(user))
                 .retrieve()
+                .onStatus(HttpStatusCode::isError, externalErrorMapper.handleError("user-service"))
                 .bodyToMono(UserResponseDto.class)
                 .map(UserMapper::toUser);
     }

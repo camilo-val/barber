@@ -1,13 +1,12 @@
 spring:
   application:
-    name: client-service
+    name: employed-service
   data:
     mongodb:
-      #    uri: mongodb+srv://camiloval1999:Ccva1007@cluster0.uwbtkk8.mongodb.net/barber?retryWrites=true&w=majority&appName=Cluster0
       uri: mongodb://camiloval1999:Ccva1007@ac-qfqxsfs-shard-00-00.uwbtkk8.mongodb.net:27017,ac-qfqxsfs-shard-00-01.uwbtkk8.mongodb.net:27017,ac-qfqxsfs-shard-00-02.uwbtkk8.mongodb.net:27017/barber?ssl=true&replicaSet=atlas-d048n8-shard-0&authSource=admin&retryWrites=true&w=majority
 
 server:
-  port: 8080
+  port: 8082
 
 user-service:
   service:

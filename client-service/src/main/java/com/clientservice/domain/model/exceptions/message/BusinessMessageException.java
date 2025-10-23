@@ -1,5 +1,8 @@
 package com.clientservice.domain.model.exceptions.message;
 
+import lombok.Getter;
+
+@Getter
 public enum BusinessMessageException {
 
     BAD_REQUEST("F0501","Invalid Request"),

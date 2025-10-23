@@ -35,26 +35,19 @@ public class Handler {
 
     public Mono<ServerResponse> findByUsername(ServerRequest request){
         return this.findUser.findByUsername(request.pathVariable("username"))
-                .flatMap(ServerResponse.ok()::bodyValue)
-                .onErrorResume(BusinessExceptions.class, ex ->
-                        ServerResponse.status(HttpStatus.CONFLICT)
-                                .bodyValue(Map.of("message",ex.getMessage())));
+                .flatMap(ServerResponse.ok()::bodyValue);
     }
 
     public Mono<ServerResponse> findById(ServerRequest request){
         return this.findUser.findById(request.pathVariable("id"))
-                .flatMap(ServerResponse.ok()::bodyValue)
-                .onErrorResume(BusinessExceptions.class, ex  -> ServerResponse.status(HttpStatus.CONFLICT)
-                        .bodyValue(Map.of("message", ex.getMessage())));
+                .flatMap(ServerResponse.ok()::bodyValue);
 
     }
 
     public Mono<ServerResponse> update(ServerRequest request){
         return request.bodyToMono(UserRequestDto.class)
                 .flatMap(user -> this.updateUserUserCase.updateUser(request.pathVariable("id"), UserMapper.toUser(user)))
-                .flatMap(response -> ServerResponse.created(request.uri()).bodyValue(response))
-                .onErrorResume(BusinessExceptions.class, ex  -> ServerResponse.status(HttpStatus.CONFLICT)
-                        .bodyValue(Map.of("message", ex.getMessage())));
+                .flatMap(response -> ServerResponse.ok().bodyValue(response));
     }
 
 }
