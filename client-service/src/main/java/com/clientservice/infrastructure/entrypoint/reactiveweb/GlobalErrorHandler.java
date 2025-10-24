@@ -1,7 +1,6 @@
 package com.clientservice.infrastructure.entrypoint.reactiveweb;
 
 import com.clientservice.domain.model.exceptions.BusinessException;
-import com.clientservice.domain.model.exceptions.message.BusinessMessageException;
 import com.clientservice.infrastructure.entrypoint.reactiveweb.exceptions.TechnicalExceptions;
 import com.clientservice.infrastructure.entrypoint.reactiveweb.exceptions.TechnicalExceptionsMessage;
 import com.fasterxml.jackson.core.JsonProcessingException;

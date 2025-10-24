@@ -1,6 +1,7 @@
 package com.barberia.userservice.infrastrcuture.config;
 
 import com.barberia.userservice.domain.model.gateway.UserGateway;
+import com.barberia.userservice.domain.usecase.DeleteUserUseCase;
 import com.barberia.userservice.domain.usecase.FindUserUseCase;
 import com.barberia.userservice.domain.usecase.UpdateUserUserCase;
 import com.barberia.userservice.domain.usecase.UserUseCase;
@@ -23,6 +24,12 @@ public class BeanConfig {
     @Bean
     public UpdateUserUserCase updateUserUserCase (UserGateway userGateway){
         return new UpdateUserUserCase(userGateway);
+
+    }
+
+    @Bean
+    public DeleteUserUseCase deleteUserUseCase (UserGateway userGateway){
+        return new DeleteUserUseCase(userGateway);
 
     }
 }

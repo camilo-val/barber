@@ -1,6 +1,7 @@
 package com.barberia.userservice.infrastrcuture.entrypoint.rest;
 
 import com.barberia.userservice.domain.model.exceptions.BusinessExceptions;
+import com.barberia.userservice.domain.usecase.DeleteUserUseCase;
 import com.barberia.userservice.domain.usecase.FindUserUseCase;
 import com.barberia.userservice.domain.usecase.UpdateUserUserCase;
 import com.barberia.userservice.domain.usecase.UserUseCase;
@@ -23,6 +24,7 @@ public class Handler {
     private final UserUseCase useCase;
     private final FindUserUseCase findUser;
     private final UpdateUserUserCase updateUserUserCase;
+    private final DeleteUserUseCase deleteUserUseCase;
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
@@ -48,6 +50,12 @@ public class Handler {
         return request.bodyToMono(UserRequestDto.class)
                 .flatMap(user -> this.updateUserUserCase.updateUser(request.pathVariable("id"), UserMapper.toUser(user)))
                 .flatMap(response -> ServerResponse.ok().bodyValue(response));
+    }
+
+    public Mono<ServerResponse> delete(ServerRequest request){
+        return this.deleteUserUseCase.deleteUser(request.pathVariable("username"))
+                .flatMap(user -> ServerResponse.noContent().build());
+
     }
 
 }

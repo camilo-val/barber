@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
 @RequiredArgsConstructor
-public class FindClient {
+public class FindClientUseCase {
     private final ClientGateway clientGateway;
 
     public Mono<Client> findById(String id){

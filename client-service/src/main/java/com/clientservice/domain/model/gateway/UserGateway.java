@@ -7,4 +7,5 @@ public interface UserGateway {
     Mono<User> findByUsername(String username);
     Mono<User> create(User user);
     Mono<User> update(String id, User user);
+    Mono<Void> deleteByUsername(String username);
 }

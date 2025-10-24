@@ -13,7 +13,7 @@ public class UpdateClientUseCase {
 
     public Mono<Client> update (String id, Client client, String userId){
         return Mono.zip(this.clientGateway.clientExist(client.getDocument()),
-                this.clientGateway.findById(client.getId()))
+                this.clientGateway.findById(id))
                 .flatMap(tuple -> {
                     if (tuple.getT1()){
                         if (!tuple.getT2().getDocument().equals(client.getDocument())){
@@ -26,6 +26,5 @@ public class UpdateClientUseCase {
                     Client newClient = Client.newClient(client.getId(), client.getName(), client.getEmail(), client.getDocument(), client.getCellphone(), userId, client.getBirthdate());
                     return this.clientGateway.save(newClient);
                 });
-
     }
 }

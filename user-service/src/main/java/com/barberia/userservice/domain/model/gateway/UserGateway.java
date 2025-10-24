@@ -9,4 +9,5 @@ public interface UserGateway {
     Mono<User> findById(String id);
     Mono<User> findByUsername(String username);
     Mono<Boolean> userExist(String username);
+    Mono<Void> deleteByUsername(String username);
 }

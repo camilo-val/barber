@@ -5,5 +5,16 @@ spring:
     mongodb:
       #    uri: mongodb+srv://camiloval1999:Ccva1007@cluster0.uwbtkk8.mongodb.net/barber?retryWrites=true&w=majority&appName=Cluster0
       uri: mongodb://camiloval1999:Ccva1007@ac-qfqxsfs-shard-00-00.uwbtkk8.mongodb.net:27017,ac-qfqxsfs-shard-00-01.uwbtkk8.mongodb.net:27017,ac-qfqxsfs-shard-00-02.uwbtkk8.mongodb.net:27017/barber?ssl=true&replicaSet=atlas-d048n8-shard-0&authSource=admin&retryWrites=true&w=majority
+  cloud:
+    inetutils:
+      preferred-networks:
+        - 127.0.0.1
 server:
-  port: 8081
+  port: 0
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid}

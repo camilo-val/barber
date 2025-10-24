@@ -20,8 +20,8 @@ public class BeanConfig {
     }
 
     @Bean
-    public FindClient findClient(ClientGateway clientGateway){
-        return new FindClient(clientGateway);
+    public FindClientUseCase findClient(ClientGateway clientGateway){
+        return new FindClientUseCase(clientGateway);
     }
 
     @Bean

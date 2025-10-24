@@ -20,4 +20,9 @@ public class UserUseCase {
     public Mono<User> update(String id, User user){
         return this.userGateway.update(id, user);
     }
+
+    public Mono<Void> deleteByUsername(String username){
+        return this.userGateway.deleteByUsername(username);
+
+    }
 }

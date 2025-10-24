@@ -47,5 +47,10 @@ public class UserRepositoryAdapter implements UserGateway {
         return this.repository.findByUsername(username).hasElement();
     }
 
+    @Override
+    public Mono<Void> deleteByUsername(String username) {
+        return this.repository.deleteByUsername(username);
+    }
+
 
 }

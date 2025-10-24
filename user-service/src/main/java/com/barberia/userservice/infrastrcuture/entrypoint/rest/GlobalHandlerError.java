@@ -41,9 +41,9 @@ public class GlobalHandlerError implements ErrorWebExceptionHandler {
             error = toMap(businessExceptions.getBusinessMessageException().getCode(),"BUSINESS",ex.getMessage());
         }else if(ex instanceof TechnicalExceptions technicalExceptions){
             error = toMap(technicalExceptions.getTechnicalExceptionsMessage().getCode(),"TECHNICAL",ex.getMessage());
-        }else {
+        }/*else {
             error = toMap(TechnicalExceptionsMessage.UNKNOWN.getCode(), "UNKNOWN", TechnicalExceptionsMessage.UNKNOWN.getMessage());
-        }
+        }*/
         String json = new ObjectMapper().writeValueAsString(error);
         ServerHttpResponse response = exchange.getResponse();
         response.setStatusCode(httpStatus);

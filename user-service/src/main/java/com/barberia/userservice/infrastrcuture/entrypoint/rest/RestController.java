@@ -20,6 +20,7 @@ public class RestController {
         return RouterFunctions.route(RequestPredicates.POST(BASE + "/create"), handler::create)
                 .andRoute(RequestPredicates.GET(BASE + "/username/{username}"), handler::findByUsername)
                 .andRoute(RequestPredicates.GET(BASE + "/{id}"), handler::findById)
-                .andRoute(RequestPredicates.PUT(BASE + "/{id}"),handler::update);
+                .andRoute(RequestPredicates.PUT(BASE + "/{id}"),handler::update)
+                .andRoute(RequestPredicates.DELETE(BASE + "/{username}"),handler::delete);
     }
 }

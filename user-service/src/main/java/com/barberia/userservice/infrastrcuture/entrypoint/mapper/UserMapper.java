@@ -20,4 +20,5 @@ public class UserMapper {
     public static User toUser(UserRequestDto user){
         return User.createUser(user.getId(), user.getUsername(), user.getPassword(), user.getStatus(), user.getRole(),user.getCreateAt());
     }
+
 }

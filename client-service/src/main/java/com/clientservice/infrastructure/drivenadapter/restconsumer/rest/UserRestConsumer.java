@@ -50,4 +50,13 @@ public class  UserRestConsumer  implements UserGateway {
                 .map(UserMapper::toUser);
     }
 
+    @Override
+    public Mono<Void> deleteByUsername(String username) {
+        return builder.build()
+                .delete()
+                .uri("/api/user-service/{username}", username)
+                .retrieve()
+                .bodyToMono(Void.class);
+    }
+
 }
