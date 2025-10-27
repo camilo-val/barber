@@ -58,5 +58,4 @@ public class  UserRestConsumer  implements UserGateway {
                 .retrieve()
                 .bodyToMono(Void.class);
     }
-
 }

@@ -5,6 +5,7 @@ import com.clientservice.infrastructure.entrypoint.reactiveweb.exceptions.Techni
 import com.clientservice.infrastructure.entrypoint.reactiveweb.exceptions.TechnicalExceptionsMessage;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.web.reactive.error.ErrorWebExceptionHandler;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,6 +19,7 @@ import java.time.LocalDateTime;
 import java.util.Map;
 
 @Component
+@Log4j2
 public class GlobalErrorHandler implements ErrorWebExceptionHandler {
     private final ObjectMapper objectMapper = new ObjectMapper();
     @Override
@@ -47,6 +49,7 @@ public class GlobalErrorHandler implements ErrorWebExceptionHandler {
                     technicalEx.getMessage()
             );
         } else {
+            log.error("ERORO: " , ex.getCause());
             return toMap(
                     TechnicalExceptionsMessage.UNKNOWN.getCode(),
                     "UNKNOWN",
