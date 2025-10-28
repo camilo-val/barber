@@ -1,7 +1,6 @@
 package com.barber.productservice.infrastructure.entrypoint.reactiveweb.rest;
 
 import com.barber.productservice.domain.model.exceptions.BusinessExceptions;
-import com.barber.productservice.domain.model.exceptions.BusinessMessageExceptions;
 import com.barber.productservice.infrastructure.entrypoint.reactiveweb.exception.TechnicalExceptions;
 import com.barber.productservice.infrastructure.entrypoint.reactiveweb.exception.TechnicalExceptionsMessage;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -16,7 +15,6 @@ import org.springframework.web.server.WebExceptionHandler;
 import reactor.core.publisher.Mono;
 
 import java.nio.charset.StandardCharsets;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Map;
 

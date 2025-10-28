@@ -7,7 +7,9 @@ public enum BusinessMessageExceptions {
 
     INVALID_PRODUCT("MSP0001","invalid product"),
     PRODUCT_NOT_EXIST("MSP0002","the product not exist"),
-    PRODUCT_EXIST("MSP0003","the product exist");
+    PRODUCT_EXIST("MSP0003","the product exist"),
+    INVALID_CATEGORY("MSC_0004","the category is invalid"),
+    CATEGORY_EXIST("MSC_0004", "the category exist");
 
     private final String code;
     private final String message;

@@ -1,6 +1,6 @@
 package com.barber.productservice.infrastructure.drivenadapter.mongo.mapper;
 
-import com.barber.productservice.domain.model.Product;
+import com.barber.productservice.domain.model.product.Product;
 import com.barber.productservice.infrastructure.drivenadapter.mongo.document.ProductDocument;
 import org.mapstruct.Mapper;
 import org.mapstruct.ObjectFactory;

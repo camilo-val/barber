@@ -1,11 +1,12 @@
 package com.barber.productservice.infrastructure.drivenadapter.mongo.adapter;
 
-import com.barber.productservice.domain.model.Product;
-import com.barber.productservice.domain.model.gateway.ProductGateway;
+import com.barber.productservice.domain.model.product.Product;
+import com.barber.productservice.domain.model.product.gateway.ProductGateway;
 import com.barber.productservice.infrastructure.drivenadapter.mongo.data.ProductRepository;
 import com.barber.productservice.infrastructure.drivenadapter.mongo.mapper.ProductMongoMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Component
@@ -35,5 +36,10 @@ public class ProductAdapter implements ProductGateway {
     @Override
     public Mono<Void> deleteBySku(String sku) {
         return this.productRepository.deleteBySku(sku);
+    }
+
+    @Override
+    public Flux<Product> findByCategoryId(String categoryId) {
+        return this.productRepository.findByCategoryId(categoryId);
     }
 }

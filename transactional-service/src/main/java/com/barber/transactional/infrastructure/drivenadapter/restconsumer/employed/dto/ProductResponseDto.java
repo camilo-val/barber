@@ -1,4 +1,4 @@
-package com.barber.productservice.infrastructure.entrypoint.reactiveweb.dto;
+package com.barber.transactional.infrastructure.drivenadapter.restconsumer.employed.dto;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Builder(toBuilder = true)
 @Getter
-public class ProductRequestDto {
+public class ProductResponseDto {
     private final String id;
     private final String productName;
     private final String sku;

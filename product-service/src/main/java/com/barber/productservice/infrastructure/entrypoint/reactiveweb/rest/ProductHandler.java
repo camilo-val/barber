@@ -1,10 +1,11 @@
 package com.barber.productservice.infrastructure.entrypoint.reactiveweb.rest;
 
-import com.barber.productservice.domain.usecase.CreateProductUseCase;
-import com.barber.productservice.domain.usecase.DeleteProductUseCase;
-import com.barber.productservice.domain.usecase.FindProductUseCase;
-import com.barber.productservice.domain.usecase.UpdateProductUseCase;
-import com.barber.productservice.infrastructure.entrypoint.reactiveweb.dto.ProductRequestDto;
+import com.barber.productservice.domain.usecase.product.CreateProductUseCase;
+import com.barber.productservice.domain.usecase.product.DeleteProductUseCase;
+import com.barber.productservice.domain.usecase.product.FindProductUseCase;
+import com.barber.productservice.domain.usecase.product.UpdateProductUseCase;
+import com.barber.productservice.infrastructure.entrypoint.reactiveweb.dto.product.ProductRequestDto;
+import com.barber.productservice.infrastructure.entrypoint.reactiveweb.dto.product.ProductResponseDto;
 import com.barber.productservice.infrastructure.entrypoint.reactiveweb.exception.TechnicalExceptions;
 import com.barber.productservice.infrastructure.entrypoint.reactiveweb.exception.TechnicalExceptionsMessage;
 import com.barber.productservice.infrastructure.entrypoint.reactiveweb.mapper.ProductMapper;
@@ -12,11 +13,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RequiredArgsConstructor
 @Component
-public class Handler {
+public class ProductHandler {
     private final CreateProductUseCase createProductUseCase;
     private final UpdateProductUseCase updateProductUseCase;
     private final FindProductUseCase findProductUseCase;
@@ -49,6 +51,15 @@ public class Handler {
     public Mono<ServerResponse> delete (ServerRequest request){
         return this.deleteProductUseCase.deleteBySku(request.pathVariable("sku"))
                 .flatMap(response -> ServerResponse.noContent().build());
+    }
+
+    public Mono<ServerResponse> findByCategory(ServerRequest request){
+        Flux<ProductResponseDto> products = this.findProductUseCase
+                .findByCategory(request.pathVariable("category"))
+                .map(productMapper::toResponse);
+
+        return ServerResponse.ok().body(products, ProductResponseDto.class);
+
     }
 
 }

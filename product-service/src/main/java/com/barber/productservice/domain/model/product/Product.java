@@ -1,4 +1,5 @@
-package com.barber.productservice.domain.model;
+package com.barber.productservice.domain.model.product;
+
 
 import com.barber.productservice.domain.model.exceptions.BusinessExceptions;
 import com.barber.productservice.domain.model.exceptions.BusinessMessageExceptions;

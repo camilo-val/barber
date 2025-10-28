@@ -1,8 +1,8 @@
-package com.barber.productservice.domain.usecase;
+package com.barber.productservice.domain.usecase.product;
 
 import com.barber.productservice.domain.model.exceptions.BusinessExceptions;
 import com.barber.productservice.domain.model.exceptions.BusinessMessageExceptions;
-import com.barber.productservice.domain.model.gateway.ProductGateway;
+import com.barber.productservice.domain.model.product.gateway.ProductGateway;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
